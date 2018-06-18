@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Codebreaker 2018 web version">
+    <meta name="description" content="<%= message['headers']['app_name'] %>">
     <meta name="author" content="Vladislav Trotsenko">
-    <title>404 Error - Page not found</title>
+    <title><%= message['headers']['404_title'] %> - <%= message['headers']['app_name'] %></title>
   </head>
 
   <body class="text-center">
-    404 Error - Page not found
+    <%= message['body']['404_info'] %>
   </body>
 
 </html>

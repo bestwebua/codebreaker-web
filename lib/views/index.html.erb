@@ -3,19 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Codebreaker 2018 web version">
+    <meta name="description" content="<%= message['headers']['app_name'] %>">
     <meta name="author" content="Vladislav Trotsenko">
-    <title>Codebreaker 2018</title>
+    <title><%= message['headers']['app_name'] %></title>
   </head>
 
   <body class="text-center">
     Application uses Codebreaker2018 <%= Codebreaker::VERSION %> gem
-    <br><br>
-
-    How to interpolate hash message[key] in this case:
-    <br>
-    <%= message %>
-    
   </body>
 
 </html>
