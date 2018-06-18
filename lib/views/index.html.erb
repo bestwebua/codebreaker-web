@@ -4,12 +4,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="<%= message['headers']['app_name'] %>">
-    <meta name="author" content="Vladislav Trotsenko">
+    <meta name="author" content="<%= message['headers']['author'] %>">
     <title><%= message['headers']['app_name'] %></title>
   </head>
 
   <body class="text-center">
     Application uses Codebreaker2018 <%= Codebreaker::VERSION %> gem
+    <br>
+    <br>
+    <%= message['interface']['lang'] %>
+    <br>
+    <%= cookies %>
+    <br>
+    <br>
+    <form method="post" action="/change_lang">
+      <input name="lang" type="text">
+      <input type="submit" value="Change language">
+    </form>
   </body>
 
 </html>
