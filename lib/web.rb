@@ -1,30 +1,28 @@
 require 'erb'
-require 'codebreaker'
-require 'pry'
 
 
 module Codebreaker
   class Web
     include Message
-    include Storage
+    #include Storage
 
     def self.call(env)
       new(env).response.finish
     end
 
-    #attr_reader :request
+    attr_reader :request, :locale
 
     def initialize(env)
-      localization_dir = File.expand_path('./locale/.', File.dirname(__FILE__))
-      @locale = Localization.new(:web, localization_dir)
       @request = Rack::Request.new(env)
+      @locale = request.session.options[:locale]
     end
 
     def response
-      case @request.path
-        when '/' then Rack::Response.new(render('index.html.erb'))
+      case request.path
+        when '/'
+          locale.lang = request.cookies['lang'].to_sym if request.cookies['lang']
+          Rack::Response.new(render('index.html.erb'))
         when '/change_lang' then change_lang
-        #when '/start_game' then Rack::Response.new(@request.params[:player_name])
         else Rack::Response.new(render('404.html.erb'), 404)
       end
     end
@@ -35,15 +33,14 @@ module Codebreaker
     end
 
     def cookies
-      @request.cookies['lang']
+      request.cookies['lang']
     end
 
     private
     def change_lang
       Rack::Response.new do |response|
-        response.set_cookie('lang', @request.params['lang'])
+        response.set_cookie('lang', request.params['lang'])
         response.redirect('/')
-        @locale.lang = @request.cookies['lang']
       end
     end
   end
