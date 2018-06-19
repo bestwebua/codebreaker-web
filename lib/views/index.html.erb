@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="<%= locale.lang %>">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,8 +18,22 @@
     <br>
     <br>
     <form method="post" action="/change_lang">
-      <input name="lang" type="text">
+      <select name="lang">
+        <option value="en">English</option>
+        <option value="ru">Russian</option>
+      </select>
       <input type="submit" value="Change language">
+    </form>
+    <br>
+    <br>
+    <form method="post" action="/start_game">
+      <input name="player_name" type="text">
+      <select name="level">
+        <option value="simple">Simple</option>
+        <option value="middle">Middle</option>
+        <option value="hard">Hard</option>
+      </select>
+      <input type="submit" value="Start the game">
     </form>
   </body>
 
