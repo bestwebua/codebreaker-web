@@ -1,5 +1,6 @@
-require 'securerandom'
 require 'codebreaker'
+require 'erb'
+require 'securerandom'
 require_relative 'lib/web'
 
 localization_dir = File.expand_path('./lib/locale/.', File.dirname(__FILE__))
