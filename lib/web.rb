@@ -1,6 +1,5 @@
 require 'erb'
 
-
 module Codebreaker
   class Web
     include Message
