@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="<%= locale.lang %>">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="<%= message['headers']['app_name'] %>">
+    <meta name="author" content="<%= message['headers']['author'] %>">
+    <title><%= message['headers']['app_name'] %></title>
+  </head>
+
+  <body class="text-center">
+    Привет <%= game.configuration.player_name %>
+    <br>
+    <br>
+    <form method="post" action="/submit_answer">
+      <input name="number" type="text" value="<%= last_guess %>" >
+      <input type="submit" value="Submit">
+    </form>
+    <br><br>
+
+    <%= game.send(:secret_code) %>
+    <br>
+    <%= game.won? %>
+    <br>
+    <%= game.attempts %>
+
+  </body>
+
+</html>
