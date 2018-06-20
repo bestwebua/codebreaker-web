@@ -7,3 +7,5 @@
     404_info: 404 Error. Page not found.
   interface:
     lang: English
+  alerts:
+    motivation: Come on, step on it!
