@@ -2,4 +2,7 @@
   <input name="number" type="text" value="<%= last_guess %>" >
   <input type="submit" value="Submit">
 </form>
-<%= marker  %>
+
+<% unless game.won? %>
+  <%= marker  %>
+<% end %>

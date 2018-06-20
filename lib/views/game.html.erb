@@ -11,12 +11,13 @@
   <body class="text-center">
     Привет, <%= game.configuration.player_name %>
     <br>
+    <%= game.send(:secret_code) %>
     <br>
-    <%= render('_guess_form.html.erb') %>
+    <%= render('_guess_form') %>
     <br><br>
-    <%= render('_hints.html.erb') %>
+    <%= render('_hints') %>
     <br><br>
-    <%= render('_motivation.html.erb') %>
+    <%= render('_motivation') %>
     <%= game.attempts %>
   </body>
 
