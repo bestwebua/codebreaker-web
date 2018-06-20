@@ -1,0 +1,9 @@
+<% if game.hints.positive? %>
+  <form method="post" action="/get_hint">
+    <input type="submit" value="Get hint!">
+  </form>
+<% end %>
+
+<% if hint %>
+  <%= hint %>
+<% end %>
