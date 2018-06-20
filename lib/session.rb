@@ -1,8 +1,8 @@
 module Codebreaker
   module Session
-    private
+    #private
     def define_session_accessors
-      Codebreaker::GameConfiguration.members.each do |method|
+      %i[game last_guess].each do |method|
         self.class.class_eval do
           define_method "#{method}" do
             request.session[method]
