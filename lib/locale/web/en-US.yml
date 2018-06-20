@@ -2,7 +2,7 @@
   headers:
     app_name: Codebreaker 2018 web version
     author: Vladislav Trotsenko
-    404_title: 404 Error
+    error: Error
   body:
     404_info: 404 Error. Page not found.
   interface:
