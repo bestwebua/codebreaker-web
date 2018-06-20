@@ -1,11 +1,11 @@
 require 'pry'
-require_relative 'session'
+require_relative 'utils'
 
 module Codebreaker
   class Web
     include Message
     include Motivation
-    include Session
+    include Utils
 
     def self.call(env)
       new(env).response.finish
@@ -32,19 +32,14 @@ module Codebreaker
     end
 
     private
-    def render(template)
-      path = File.expand_path("../views/#{template}", __FILE__)
-      ERB.new(File.read(path)).result(binding)
-    end
-
     def page_not_found
-      Rack::Response.new(render('error.html.erb') { message['body']['404_info'] }, 404)
+      error_template('error', 404) { message['body']['404_info'] }
     end
 
     def load_index
       locale.lang = request.cookies['lang'].to_sym if request.cookies['lang']
       request.session.clear
-      Rack::Response.new(render('index.html.erb'))
+      template('index')
     end
 
     def change_lang
@@ -62,28 +57,31 @@ module Codebreaker
         config.level = request.params['level'].to_sym
         config.lang = self.locale.lang
       end
-      Rack::Response.new(render('game.html.erb'))
+      template('game')
     end
 
     def show_hint
-      Rack::Response.new do |response|
-        self.hint = game.hint
-        response.redirect('/play')
-      end
+      self.hint = game.hint
+      go_to('/play')
+    end
+
+    def game_over?
+      game.won? || game.attempts.zero?
     end
 
     def submit_answer
-      Rack::Response.new do |response|
-        self.last_guess = request.params['number']
-        self.marker = game.to_guess(last_guess)
-        return response.redirect('finish_game') if game.won? || game.attempts.zero?
+      self.last_guess = request.params['number']
+      self.marker = game.to_guess(last_guess)
+      if game_over?
+        go_to('/finish_game')
+      else
         self.hint = false
-        response.redirect('/play')
+        go_to('/play')
       end
     end
 
     def finish_game
-      ###
+      template('score')
     end
   end
 end
