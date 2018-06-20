@@ -1,3 +1,4 @@
+require 'pry'
 require_relative 'session'
 
 module Codebreaker
@@ -19,27 +20,32 @@ module Codebreaker
 
     def response
       case request.path
-        when '/' then index
+        when '/'              then load_index
         when '/change_lang'   then change_lang
-        when '/start_game'    then start_game
+        when '/play'          then play
         when '/show_hint'     then show_hint
         when '/submit_answer' then submit_answer
         when '/finish_game'   then finish_game
-        else Rack::Response.new(render('404.html.erb'), 404)
+        else page_not_found
       end
     end
 
+    private
     def render(template)
       path = File.expand_path("../views/#{template}", __FILE__)
       ERB.new(File.read(path)).result(binding)
     end
 
-    def cookies
-      #Cookies: #{request.cookies} 
-      # "Params: #{request.session.keys}"
+    def page_not_found
+      Rack::Response.new(render('error.html.erb') { message['body']['404_info'] }, 404)
     end
 
-    private
+    def load_index
+      locale.lang = request.cookies['lang'].to_sym if request.cookies['lang']
+      request.session.clear
+      Rack::Response.new(render('index.html.erb'))
+    end
+
     def change_lang
       Rack::Response.new do |response|
         response.set_cookie('lang', request.params['lang'])
@@ -47,24 +53,28 @@ module Codebreaker
       end
     end
 
-    def index
-      locale.lang = request.cookies['lang'].to_sym if request.cookies['lang']
-      Rack::Response.new(render('index.html.erb'))
+    def play
+      self.game ||= Game.new do |config|
+        config.player_name = request.params['player_name']
+        config.max_attempts = 5
+        config.max_hints = 2
+        config.level = request.params['level'].to_sym
+        config.lang = self.locale.lang
+      end
+      Rack::Response.new(render('game.html.erb'))
     end
 
-    def start_game
-      Rack::Response.new do |response|
-        response.set_cookie('level', request.params['level'])
-        response.redirect('/')
-      end
-    end
 
     def show_hint
       ###
     end
 
     def submit_answer
-      ###
+      Rack::Response.new do |response|
+        game.to_guess(self.last_guess = request.params['number'])
+        return response.redirect('finish_game') if game.won? 
+        response.redirect('/play')
+      end
     end
 
     def finish_game
