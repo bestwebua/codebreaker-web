@@ -4,6 +4,7 @@ require_relative 'session'
 module Codebreaker
   class Web
     include Message
+    include Motivation
     include Session
 
     def self.call(env)
@@ -64,15 +65,19 @@ module Codebreaker
       Rack::Response.new(render('game.html.erb'))
     end
 
-
     def show_hint
-      ###
+      Rack::Response.new do |response|
+        self.hint = game.hint
+        response.redirect('/play')
+      end
     end
 
     def submit_answer
       Rack::Response.new do |response|
-        game.to_guess(self.last_guess = request.params['number'])
-        return response.redirect('finish_game') if game.won? 
+        self.last_guess = request.params['number']
+        self.marker = game.to_guess(last_guess)
+        return response.redirect('finish_game') if game.won? || game.attempts.zero?
+        self.hint = false
         response.redirect('/play')
       end
     end
