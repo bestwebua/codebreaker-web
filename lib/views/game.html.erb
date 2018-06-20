@@ -9,21 +9,15 @@
   </head>
 
   <body class="text-center">
-    Привет <%= game.configuration.player_name %>
+    Привет, <%= game.configuration.player_name %>
     <br>
     <br>
-    <form method="post" action="/submit_answer">
-      <input name="number" type="text" value="<%= last_guess %>" >
-      <input type="submit" value="Submit">
-    </form>
+    <%= render('_guess_form.html.erb') %>
     <br><br>
-
-    <%= game.send(:secret_code) %>
-    <br>
-    <%= game.won? %>
-    <br>
+    <%= render('_hints.html.erb') %>
+    <br><br>
+    <%= render('_motivation.html.erb') %>
     <%= game.attempts %>
-
   </body>
 
 </html>
