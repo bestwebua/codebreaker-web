@@ -2,7 +2,7 @@ module Codebreaker
   module Utils
     private
     def define_session_accessors
-      %i[game last_guess marker hint].each do |method|
+      %i[game scores last_guess marker hint].each do |method|
         self.class.class_eval do
           define_method "#{method}" do
             request.session[method]
@@ -32,6 +32,15 @@ module Codebreaker
       Rack::Response.new do |response|
         response.redirect(url)
       end
+    end
+
+    def load_scores
+      self.scores = load_game_data
+    end
+
+    def save_game_data
+      save_user_score
+      save_to_yml
     end
   end
 end
