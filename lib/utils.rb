@@ -24,8 +24,8 @@ module Codebreaker
       Rack::Response.new(render(erb_name))
     end
 
-    def error_template(erb_name, status, &message)
-      Rack::Response.new(render(erb_name) { message.call }, status)
+    def error_template(erb_name, status, &err_msg)
+      Rack::Response.new(render(erb_name) { err_msg.call }, status)
     end
 
     def go_to(url)
