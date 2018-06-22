@@ -6,6 +6,8 @@ module Codebreaker
     include Message
     include Motivation
     include Utils
+    include UserScore
+    include Storage
 
     def self.call(env)
       new(env).response.finish
@@ -17,6 +19,7 @@ module Codebreaker
       @request = Rack::Request.new(env)
       @locale = request.session.options[:locale]
       define_session_accessors
+      apply_external_path(File.expand_path("./lib/data"))
     end
 
     def response
@@ -57,6 +60,7 @@ module Codebreaker
         config.level = request.params['level'].to_sym
         config.lang = self.locale.lang
       end
+      load_scores
       template('game')
     end
 
@@ -73,6 +77,8 @@ module Codebreaker
       self.last_guess = request.params['number']
       self.marker = game.to_guess(last_guess)
       if game_over?
+        save_game_data
+        request.session.clear
         go_to('/finish_game')
       else
         self.hint = false
@@ -81,6 +87,7 @@ module Codebreaker
     end
 
     def finish_game
+      load_scores
       template('score')
     end
   end
