@@ -1,6 +1,7 @@
 module Codebreaker
   module Utils
     private
+
     def define_session_accessors
       %i[game scores last_guess marker hint].each do |method|
         self.class.class_eval do
