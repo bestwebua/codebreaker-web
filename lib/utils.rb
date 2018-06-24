@@ -35,6 +35,13 @@ module Codebreaker
       end
     end
 
+    def referer
+      root_url = '/'
+      return root_url unless request.referer
+      url = request.referer[/\A.+\/{2}.+(\/.+)\z/,1]
+      url ? url : root_url
+    end
+
     def load_scores
       self.scores = load_game_data
     end
