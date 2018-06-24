@@ -1,0 +1,28 @@
+#introduction {
+  background-color: #3a5db5;
+  background-image: url("../images/garage_big.svg"), url("../images/garage_small.png"), linear-gradient(180deg, #b53a8a 1%, #3a5db5 100%);
+  background-repeat: no-repeat, no-repeat;
+  background-position: 5% 65%, 44% 20%;
+}
+
+#lang_menu {
+  margin: 6px 0 6px 0;
+}
+
+.fill-viewport {
+  min-height: 100vh;
+}
+
+.text-white-70 {
+  color: rgba(255,255,255,0.7);
+}
+
+.label {
+  font-weight: bold;
+  color: white;
+}
+
+.geminfo {
+  margin-top: 25px;
+  text-align: center;
+}
