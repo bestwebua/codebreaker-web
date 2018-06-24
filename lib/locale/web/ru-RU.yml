@@ -3,9 +3,26 @@
     app_name: Codebreaker 2018 веб-версия
     author: Владислав Троценко
     error: Ошибка
+  form:
+    lang:
+      eng: Английский
+      rus: Русский
+    label:
+      player_name: Имя игрока
+      level: Уровень сложности
+    placeholder:
+      your_name: Ваше имя
+    level:
+      choose: Выберите уровень сложности игры...
+      simple: Легкий
+      middle: Средний
+      hard: Сложный
+    submit:
+      start_game: Начать игру!
   body:
+    intro: Попробуйте отгадать 4-значное число, состоящее из чисел, находящихся в диапазоне от 1 до 6.
     404_info: 404 Ошибка. Страница не найдена.
-  interface:
-    lang: Русский
   alerts:
     motivation: Подумай хорошенько и сделай это!
+  copyrights:
+    geminfo: Это приложение использует

@@ -3,9 +3,26 @@
     app_name: Codebreaker 2018 web version
     author: Vladislav Trotsenko
     error: Error
+  form:
+    lang:
+      eng: English
+      rus: Russian
+    label:
+      player_name: Player's name
+      level: Game level
+    placeholder:
+      your_name: Your name
+    level:
+      choose: Choose game level...
+      simple: Simple
+      middle: Middle
+      hard: Hard
+    submit:
+      start_game: Start the game!
   body:
+    intro: Try to guess 4-digit number, that consists of numbers in a range from 1 to 6.
     404_info: 404 Error. Page not found.
-  interface:
-    lang: English
   alerts:
     motivation: Come on, step on it!
+  copyrights:
+    geminfo: This application uses
