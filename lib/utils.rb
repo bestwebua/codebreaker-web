@@ -39,6 +39,10 @@ module Codebreaker
       self.scores = load_game_data
     end
 
+    def game_over?
+      game.won? || game.attempts.zero?
+    end
+
     def save_game_data
       save_user_score
       save_to_yml

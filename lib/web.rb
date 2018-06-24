@@ -35,6 +35,7 @@ module Codebreaker
     end
 
     private
+
     def page_not_found
       error_template('error', 404) { message['body']['404_info'] }
     end
@@ -67,10 +68,6 @@ module Codebreaker
     def show_hint
       self.hint = game.hint
       go_to('/play')
-    end
-
-    def game_over?
-      game.won? || game.attempts.zero?
     end
 
     def submit_answer
