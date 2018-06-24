@@ -5,38 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="<%= message['headers']['app_name'] %>">
     <meta name="author" content="<%= message['headers']['author'] %>">
-    <link rel="icon" href="/favicon.ico">
-    
+    <link href="favicon.ico" rel="icon">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
     <title><%= message['headers']['app_name'] %></title>
   </head>
-
-  <body class="text-center">
-    Application uses Codebreaker2018 <%= Codebreaker::VERSION %> gem
-    <br>
-    <br>
-    <%= message['interface']['lang'] %>
-    <br>
-
-    <br>
-    <br>
-    <form method="post" action="/change_lang">
-      <select name="lang">
-        <option value="en">English</option>
-        <option value="ru">Russian</option>
-      </select>
-      <input type="submit" value="Change language">
-    </form>
-    <br>
-    <br>
-    <form method="post" action="/play">
-      <input name="player_name" type="text">
-      <select name="level">
-        <option value="simple">Simple</option>
-        <option value="middle">Middle</option>
-        <option value="hard">Hard</option>
-      </select>
-      <input type="submit" value="Start the game">
-    </form>
+  <body>
+    <section id="introduction">
+      <div class="container">
+        <div class="row fill-viewport align-items-center">
+          <div class="col-12 col-md-6">
+            <div class="row">
+              <div class="col-md-auto"><h1 class="text-white">Codebreaker 2018</h1></div>
+              <div class="col"><%= render('_lang_selector') %></div>
+            </div>
+            <p class="lead text-white-70"><%= message['body']['intro'] %></p>
+            <hr class="mb-4">
+            <%= render('_game_configuration') %>
+            <p class="small text-white geminfo">
+              <%= message['copyrights']['geminfo'] %> codebreaker2018 <a href="https://badge.fury.io/rb/codebreaker2018" target="_blank"><img src="https://badge.fury.io/rb/codebreaker2018.svg" alt="Gem Version" height="18"></a>
+            </p>
+          </div>
+        </div>
+       </div>
+    </section>
   </body>
-
 </html>
