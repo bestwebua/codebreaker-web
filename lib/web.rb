@@ -41,16 +41,13 @@ module Codebreaker
     end
 
     def load_index
-      locale.lang = request.cookies['lang'].to_sym if request.cookies['lang']
       request.session.clear
       template('index')
     end
 
     def change_lang
-      Rack::Response.new do |response|
-        response.set_cookie('lang', request.params['lang'])
-        response.redirect('/')
-      end
+      locale.lang = request.params['lang'].to_sym
+      go_to(referer)
     end
 
     def play
