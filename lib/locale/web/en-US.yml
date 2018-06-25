@@ -19,9 +19,16 @@
       hard: Hard
     submit:
       start_game: Start the game!
+      answer: Submit
+      hint: Show hint!
   body:
     intro: Try to guess 4-digit number, that consists of numbers in a range from 1 to 6.
     404_info: 404 Error. Page not found.
+  ui:
+    hello: Hello
+    level: Level
+    attempts: Attempts
+    hints: Hints
   alerts:
     motivation: Come on, step on it!
   copyrights:
