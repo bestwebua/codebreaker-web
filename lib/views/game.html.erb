@@ -5,21 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="<%= message['headers']['app_name'] %>">
     <meta name="author" content="<%= message['headers']['author'] %>">
-    <link rel="icon" href="/favicon.ico">
+    <link href="favicon.ico" rel="icon">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
     <title><%= message['headers']['app_name'] %></title>
   </head>
-
-  <body class="text-center">
-    Привет, <%= game.configuration.player_name %>
-    <br>
-    <%= game.send(:secret_code) %>
-    <br>
-    <%= render('_guess_form') %>
-    <br><br>
-    <%= render('_hints') %>
-    <br><br>
-    <%= render('_motivation') %>
-    <%= game.attempts %>
+  <body>
+    <section id="introduction">
+      <div class="container">
+        <div class="row fill-viewport align-items-center">
+          <div class="col-12 col-md-6">
+            <div class="row">
+              <div class="col-md-auto"><h1 class="text-white title">Codebreaker 2018</h1></div>
+              <div class="col"><%= render('_lang_selector') %></div>
+            </div>
+            <p class="lead text-white-70">
+              <%= message['ui']['hello'] %>, <%= game.configuration.player_name %>!
+              <%= message['body']['intro'] %>
+            </p>
+            <%= render('_user_settings') %>
+            <%= render('_guess_form') %>
+            <p class="small text-white geminfo">
+              <%= message['copyrights']['geminfo'] %> codebreaker2018 <a href="https://badge.fury.io/rb/codebreaker2018" target="_blank"><img src="https://badge.fury.io/rb/codebreaker2018.svg" alt="Gem Version" height="18"></a>
+            </p>
+          </div>
+        </div>
+       </div>
+    </section>
+  <script src="js/guess_marker.js" type="text/javascript"></script>
   </body>
-
 </html>
