@@ -1,8 +1,30 @@
-<form method="post" action="/submit_answer">
-  <input name="number" type="text" value="<%= last_guess %>" >
-  <input type="submit" value="Submit">
-</form>
+<hr class="mb-4">
 
-<% unless game.won? %>
-  <%= marker  %>
-<% end %>
+<form method="post" action="/submit_answer">
+  <div class="form-group">
+    <input class="form-control guess_input" name="number" type="text" size="4" placeholder='<%= last_guess %>' required autocomplete='off'>
+  </div>
+
+  <% unless game.won? %>
+    <div class="form-group guess_markers_list">
+      <div id="guess_marker">
+        <%= marker %>
+      </div>
+    </div>
+  <% end %>
+  
+  <hr class="mb-4">
+
+  <button type="submit" class="btn btn-primary btn-lg">
+    <%= message['form']['submit']['answer'] %>
+  </button>
+  
+  <a class="btn btn-warning btn-lg float-right <%= 'disabled' unless game.hints.positive? %>" href="/show_hint" role="button">
+    <%= message['form']['submit']['hint'] %>
+    <% if hint %>
+      <span class="badge badge-light">
+        <%= hint %>
+      </span>
+    <% end %>
+  </a>
+</form>
