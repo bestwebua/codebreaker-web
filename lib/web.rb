@@ -69,7 +69,7 @@ module Codebreaker
 
     def submit_answer
       self.last_guess = request.params['number']
-      self.marker = game.to_guess(last_guess)
+      self.marker = game.to_guess(last_guess).tr(' ','x')
       if game_over?
         save_game_data
         request.session.clear
