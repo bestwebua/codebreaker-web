@@ -21,6 +21,7 @@
       start_game: Start the game!
       answer: Submit
       hint: Show hint!
+      top: Top 20 players
   body:
     intro: Try to guess 4-digit number, that consists of numbers in a range from 1 to 6.
     404_info: 404 Error. Page not found.
