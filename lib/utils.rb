@@ -42,6 +42,10 @@ module Codebreaker
       url ? url : root_url
     end
 
+    def first_attempt?
+      game.attempts == game.configuration.max_attempts
+    end
+
     def load_scores
       self.scores = load_game_data
     end
