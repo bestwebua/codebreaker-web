@@ -2,7 +2,7 @@
 
 <form method="post" action="/submit_answer">
   <div class="form-group">
-    <input class="form-control guess_input" name="number" type="text" size="4" placeholder='<%= last_guess %>' required autocomplete='off'>
+    <input class="form-control guess_input" name="number" type="text" size="4" placeholder='<%= last_guess %>' required <%= 'autofocus' if first_attempt? %> autocomplete='off'>
   </div>
 
   <% unless game.won? %>
