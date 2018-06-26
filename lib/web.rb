@@ -68,8 +68,17 @@ module Codebreaker
     end
 
     def submit_answer
-      self.last_guess = request.params['number']
+      user_input = request.params['number']
+
+      begin
+        game.guess_valid?(user_input)
+        self.last_guess = user_input
+      rescue
+        go_to('/play')
+      end
+      
       self.marker = game.to_guess(last_guess).tr(' ','x')
+
       if game_over?
         save_game_data
         request.session.clear
