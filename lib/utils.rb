@@ -54,6 +54,10 @@ module Codebreaker
       game.won? || game.attempts.zero?
     end
 
+    def hints_allowed?
+      !game_over? && game.hints.positive?
+    end
+
     def save_game_data
       save_user_score
       save_to_yml
