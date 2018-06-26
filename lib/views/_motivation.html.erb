@@ -1,4 +1,4 @@
-<% unless game.attempts == game.configuration.max_attempts %>
+<% unless first_attempt? %>
   <div id="motivation" class="alert alert-info alert-dismissible fade show" role="alert">
     <div class="message">
       <%= motivation_message(message['alerts']['motivation']) %>
