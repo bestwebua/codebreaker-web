@@ -1,21 +1,15 @@
 require 'pry'
+require_relative 'urls'
 require_relative 'utils'
 
 module Codebreaker
   class Web
+    include Urls
     include Message
     include Motivation
     include Utils
     include UserScore
     include Storage
-
-    ROOT_URL   = '/'
-    LANG_URL   = '/change_lang'
-    PLAY_URL   = '/play'
-    HINT_URL   = '/show_hint'
-    SUBMIT_URL = '/submit_answer'
-    FINISH_URL = '/finish_game'
-    SCORES_URL = '/top_scores'
 
     def self.call(env)
       new(env).response.finish
