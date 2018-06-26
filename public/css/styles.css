@@ -5,6 +5,16 @@
   background-position: 5% 65%, 44% 20%;
 }
 
+input[type='number'] {
+  -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .title {
   text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
 }
