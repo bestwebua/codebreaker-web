@@ -1,4 +1,4 @@
-<form method="post" action="/play">
+<form method="post" action="<%= Web::PLAY_URL %>">
   <div class="form-group">
     <label for="player_name" class="lead label"><%= message['form']['label']['player_name'] %>:</label>
     <input class="form-control" name="player_name" id='player_name' type="text" placeholder="<%= message['form']['placeholder']['your_name'] %>" autofocus required>
@@ -20,7 +20,7 @@
     <%= message['form']['submit']['start_game'] %>
   </button>
 
-  <a class="btn btn-success btn-lg float-right" href="/scores" role="button">
+  <a class="btn btn-success btn-lg float-right" href="<%= Web::SCORES_URL %>" role="button">
     <%= message['form']['submit']['top'] %>
   </a>
 </form>

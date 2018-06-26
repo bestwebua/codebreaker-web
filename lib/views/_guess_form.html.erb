@@ -1,6 +1,6 @@
 <hr class="mb-4">
 
-<form method="post" action="/submit_answer">
+<form method="post" action="<%= Web::SUBMIT_URL %>">
   <div class="form-group">
     <input class="form-control guess_input" name="number" type="number" min="1111" max="6666" placeholder='<%= last_guess %>' required <%= 'autofocus' if first_attempt? %> autocomplete='off'>
   </div>
@@ -21,7 +21,7 @@
     <%= message['form']['submit']['answer'] %>
   </button>
   
-  <a class="btn btn-warning btn-lg float-right <%= 'disabled' unless hints_allowed? %>" href="/show_hint" role="button">
+  <a class="btn btn-warning btn-lg float-right <%= 'disabled' unless hints_allowed? %>" href="<%= Web::HINT_URL %>" role="button">
     <%= message['form']['submit']['hint'] %>
     <% if hint %>
       <span class="badge badge-light">

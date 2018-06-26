@@ -36,10 +36,9 @@ module Codebreaker
     end
 
     def referer
-      root_url = '/'
-      return root_url unless request.referer
+      return Web::ROOT_URL unless request.referer
       url = request.referer[/\A.+\/{2}.+(\/.+)\z/,1]
-      url ? url : root_url
+      url ? url : Web::ROOT_URL
     end
 
     def first_attempt?
