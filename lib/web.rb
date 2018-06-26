@@ -24,12 +24,12 @@ module Codebreaker
 
     def response
       case request.path
-        when '/'              then load_index
-        when '/change_lang'   then change_lang
-        when '/play'          then play
-        when '/show_hint'     then show_hint
+        when '/' then load_index
+        when '/change_lang' then change_lang
+        when '/play' then play
+        when '/show_hint' then show_hint
         when '/submit_answer' then submit_answer
-        when '/finish_game'   then finish_game
+        when '/finish_game', '/scores' then finish_game
         else page_not_found
       end
     end
@@ -46,7 +46,8 @@ module Codebreaker
     end
 
     def change_lang
-      locale.lang = request.params['lang'].to_sym
+      lang_choice = request.params['lang']
+      locale.lang = lang_choice.to_sym if lang_choice
       go_to(referer)
     end
 
@@ -58,12 +59,17 @@ module Codebreaker
         config.level = request.params['level'].to_sym
         config.lang = self.locale.lang
       end
-      load_scores
-      template('game')
+
+      if game_over?
+        go_to('/finish_game')
+      else
+        scores || load_scores
+        template('game')
+      end
     end
 
-    def show_hint
-      self.hint = game.hint
+    def show_hint #should be a restricted access
+      self.hint = game.hint if hints_allowed?
       go_to('/play')
     end
 
@@ -81,7 +87,6 @@ module Codebreaker
 
       if game_over?
         save_game_data
-        request.session.clear
         go_to('/finish_game')
       else
         self.hint = false
@@ -89,9 +94,10 @@ module Codebreaker
       end
     end
 
-    def finish_game
+    def finish_game #should be a restricted access
       load_scores
       template('score')
+      #request.session.clear
     end
   end
 end
