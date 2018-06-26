@@ -21,7 +21,7 @@
     <%= message['form']['submit']['answer'] %>
   </button>
   
-  <a class="btn btn-warning btn-lg float-right <%= 'disabled' unless game.hints.positive? %>" href="/show_hint" role="button">
+  <a class="btn btn-warning btn-lg float-right <%= 'disabled' unless hints_allowed? %>" href="/show_hint" role="button">
     <%= message['form']['submit']['hint'] %>
     <% if hint %>
       <span class="badge badge-light">
