@@ -13,4 +13,8 @@ module Codebreaker
     MAX_ATTEMPTS = 5
     MAX_HINTS = 2
   end
+
+  module TemplatesConst
+    TOTAL_PLAYERS = 20
+  end
 end
