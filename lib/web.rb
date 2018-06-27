@@ -1,5 +1,5 @@
 require 'pry'
-require_relative 'urls'
+require_relative 'consts'
 require_relative 'utils'
 
 module Codebreaker
@@ -7,6 +7,7 @@ module Codebreaker
     include Urls
     include Message
     include Motivation
+    include WebGameConfig
     include Utils
     include UserScore
     include Storage
