@@ -8,6 +8,7 @@ module Codebreaker
     include Message
     include Motivation
     include WebGameConfig
+    include TemplatesConst
     include Utils
     include UserScore
     include Storage
