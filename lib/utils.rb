@@ -31,8 +31,8 @@ module Codebreaker
     def create_game_instance
       self.game ||= Game.new do |config|
         config.player_name = request.params['player_name']
-        config.max_attempts = 5
-        config.max_hints = 2
+        config.max_attempts = Web::MAX_ATTEMPTS
+        config.max_hints = Web::MAX_HINTS
         config.level = request.params['level'].to_sym
         config.lang = self.locale.lang
       end
