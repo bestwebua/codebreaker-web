@@ -20,6 +20,7 @@ module Codebreaker
     def initialize(env)
       @request = Rack::Request.new(env)
       @locale = request.session.options[:locale]
+      expand_score_class
       define_session_accessors
       apply_external_path(File.expand_path("./lib/data"))
     end
@@ -55,13 +56,9 @@ module Codebreaker
     end
 
     def play #should have a restricted access
-      self.game ||= Game.new do |config|
-        config.player_name = request.params['player_name']
-        config.max_attempts = 5
-        config.max_hints = 2
-        config.level = request.params['level'].to_sym
-        config.lang = self.locale.lang
-      end
+      create_game_instance
+      generate_token
+      set_client_ip
 
       if game_over?
         go_to(FINISH_URL)
@@ -98,7 +95,7 @@ module Codebreaker
     end
 
     def finish_game #should have a restricted access
-      #template('score')
+      template('scores')
     end
 
     def top_scores
