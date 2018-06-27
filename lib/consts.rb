@@ -8,4 +8,9 @@ module Codebreaker
     FINISH_URL = '/finish_game'
     SCORES_URL = '/top_scores'
   end
+
+  module WebGameConfig
+    MAX_ATTEMPTS = 5
+    MAX_HINTS = 2
+  end
 end
