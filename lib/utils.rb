@@ -75,6 +75,20 @@ module Codebreaker
       save_to_yml
     end
 
+    def level_rate
+      [Game::HARD_LEVEL, Game::MIDDLE_LEVEL, Game::SIMPLE_LEVEL].zip(0..2).to_h
+    end
+
+    def top_players
+      scores.sort_by do |player_score|
+        [level_rate[player_score.level], -player_score.score]
+      end
+    end
+
+    def player_rate(player_token = self.token)
+      top_players.index { |player_score| player_score.token == player_token }&.next
+    end
+
     def render(template)
       path = File.expand_path("../views/#{template}.html.erb", __FILE__)
       ERB.new(File.read(path)).result(binding)
