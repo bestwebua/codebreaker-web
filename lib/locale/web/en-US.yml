@@ -3,6 +3,9 @@
     app_name: Codebreaker 2018 web version
     author: Vladislav Trotsenko
     error: Error
+  meta:
+    finish: Summary
+    scores: Best players
   form:
     lang:
       eng: English
@@ -27,11 +30,15 @@
   body:
     intro: Try to guess 4-digit number, that consists of numbers in a range from 1 to 6.
     404_info: 404 Error. Page not found.
+    congrats_start: Congratulations
+    congrats_end: You won the game!
   ui:
     hello: Hello
     level: Level
     attempts: Attempts
     hints: Hints
+    score: Score
+    rating: Your rating
   alerts:
     motivation: Come on, step on it!
   copyrights:

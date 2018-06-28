@@ -3,6 +3,9 @@
     app_name: Codebreaker 2018 веб-версия
     author: Владислав Троценко
     error: Ошибка
+  meta:
+    finish: Ваши результаты
+    scores: Лучшие игроки
   form:
     lang:
       eng: Английский
@@ -27,11 +30,15 @@
   body:
     intro: Попробуйте отгадать 4-значное число, состоящее из чисел, находящихся в диапазоне от 1 до 6.
     404_info: 404 Ошибка. Страница не найдена.
+    congrats_start: Поздравляем
+    congrats_end: Вы выиграли игру!
   ui:
     hello: Привет
     level: Уровень
     attempts: Попытки
     hints: Подсказки
+    score: Счет
+    rating: Ваш рейтинг
   alerts:
     motivation: Подумай хорошенько и сделай это!
   copyrights:
