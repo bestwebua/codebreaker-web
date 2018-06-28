@@ -40,7 +40,7 @@
     name: Name
     level: Level
     score: Score
-    winner: Winner
+    summary: Summary
     date: Date
     _true: Won
     _false: Lost

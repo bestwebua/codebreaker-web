@@ -40,7 +40,7 @@
     name: Имя
     level: Уровень
     score: Счет
-    winner: Победитель
+    summary: Результат
     date: Дата
     _true: Выиграл
     _false: Проиграл
