@@ -75,13 +75,20 @@ module Codebreaker
       save_to_yml
     end
 
-    def level_rate
-      [Game::HARD_LEVEL, Game::MIDDLE_LEVEL, Game::SIMPLE_LEVEL].zip(0..2).to_h
+    def rate(type, key)
+      range = 0..Float::INFINITY
+      winners_table = [true, false].zip(range)
+      levels_table = [Game::HARD_LEVEL, Game::MIDDLE_LEVEL, Game::SIMPLE_LEVEL].zip(range)
+      %i[winner level].zip([winners_table, levels_table].map(&:to_h)).to_h[type][key]
     end
 
     def top_players
       scores.sort_by do |player_score|
-        [level_rate[player_score.level], -player_score.score]
+        [
+          rate(:winner, player_score.winner),
+          rate(:level, player_score.level),
+          -player_score.score
+        ]
       end
     end
 
