@@ -84,11 +84,15 @@ module Codebreaker
 
     def top_players
       scores.sort_by do |player_score|
-        [
-          rate(:winner, player_score.winner),
-          rate(:level, player_score.level),
-          -player_score.score
-        ]
+        by_winner = rate(:winner, player_score.winner)
+        by_level = rate(:level, player_score.level)
+        by_score = -player_score.score
+
+        if player_score.score.negative?
+          [by_score]
+        else
+          [by_winner, by_level, by_score]
+        end
       end
     end
 
