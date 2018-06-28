@@ -84,7 +84,7 @@ module Codebreaker
       rescue
         go_to(PLAY_URL)
       end
-      
+
       self.marker = game.to_guess(last_guess).tr(' ','x')
 
       if game_over?
