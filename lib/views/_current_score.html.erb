@@ -1,0 +1,27 @@
+<div class="text-center">
+  <h3 class="text-white">
+    <%= message['body']['congrats_start'] %>, 
+    <%= game.configuration.player_name %>! 
+    <%= message['body']['congrats_end'] %>
+  </h3>
+</div>
+
+<%= render('_user_summary') %>
+<hr class="mb-4">
+
+<div class="text-center">
+  <img src="images/won.gif" class="img-fluid" alt="Responsive image">
+</div>
+
+<hr class="mb-4">
+
+
+<%= game.configuration.player_name %>
+
+<%= game.won? %>
+
+<%= game.score %>
+
+<%= game.configuration.level %>
+
+<%= player_rate %>
