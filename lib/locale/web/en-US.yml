@@ -27,11 +27,14 @@
       top_start: Top of
       top_end: players
       home: Home
+      play_again: Play again!
   body:
     intro: Try to guess 4-digit number, that consists of numbers in a range from 1 to 6.
     404_info: 404 Error. Page not found.
     congrats_start: Congratulations
     congrats_end: You won the game!
+    lost_start: You lost! Don't be sad
+    lost_end: It's just a game ;)
   ui:
     hello: Hello
     level: Level
