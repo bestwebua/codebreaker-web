@@ -29,12 +29,14 @@
       home: Home
       play_again: Play again!
   body:
+    app_name: Codebreaker 2018
     intro: Try to guess 4-digit number, that consists of numbers in a range from 1 to 6.
     404_info: 404 Error. Page not found.
     congrats_start: Congratulations
     congrats_end: You won the game!
     lost_start: You lost! Don't be sad
     lost_end: It's just a game ;)
+    no_scores: Sorry, this players top is empty at this time.
   ui:
     hello: Hello
     level: Level
