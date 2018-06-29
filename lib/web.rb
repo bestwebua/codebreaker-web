@@ -1,4 +1,3 @@
-require 'pry'
 require_relative 'consts'
 require_relative 'utils'
 
