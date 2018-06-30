@@ -1,5 +1,5 @@
-require_relative 'utils'
 require_relative 'consts'
+require_relative 'utils'
 
 module Codebreaker
   class ActionsInspector
