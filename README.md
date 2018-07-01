@@ -1,10 +1,6 @@
 # CodebreakerWeb
 
-Rack version of Codebreaker2018 [![Gem Version](https://badge.fury.io/rb/codebreaker2018.svg)](https://badge.fury.io/rb/codebreaker2018)
-
-## About
-
-Codebreaker is a logic game in which the code-breaker tries to break a secret code created by a code-maker. The code-maker, which will be played by the application we’re going to write, creates a secret code of four numbers between 1 and 6.
+Rack version of Codebreaker2018 [![Gem Version](https://badge.fury.io/rb/codebreaker2018.svg)](https://badge.fury.io/rb/codebreaker2018). Try to guess 4-digit number, that consists of numbers in a range between 1 to 6.
 
 ## Technology summary
 
@@ -12,6 +8,7 @@ Codebreaker is a logic game in which the code-breaker tries to break a secret co
 * Rack 2.0.5
 * Twitter Bootstrap 4.1.1
 * HTML5/CSS/JS
+* Environment: CentOS 6.8/Puma3.11.4
 
 ## Features
 
@@ -27,6 +24,7 @@ Codebreaker is a logic game in which the code-breaker tries to break a secret co
 10. Reloading scores before using.
 11. Implement ActionInspector middleware, restricted access for necessary application parts.
 12. Implement ErrorLogger, recording all hack attempts into log-file.
+13. Responsive design.
 
 ## Contributing
 
@@ -35,4 +33,4 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/bestwe
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+The application is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
