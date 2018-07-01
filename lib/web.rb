@@ -98,7 +98,11 @@ module Codebreaker
     end
 
     def finish_game
-      template('scores')
+      if game_over?
+        template('scores')
+      else
+        go_to(PLAY_URL)
+      end
     end
 
     def top_scores
