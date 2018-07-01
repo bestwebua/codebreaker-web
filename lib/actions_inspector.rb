@@ -48,7 +48,7 @@ module Codebreaker
 
     def fake_data?
       levels = [Game::SIMPLE_LEVEL, Game::MIDDLE_LEVEL, Game::HARD_LEVEL]
-      !player_name[/\A\w{3,20}\z/] || !levels.include?(level)
+      !player_name[/\A\w{3,20}\z/] || !levels.include?(level.to_sym)
     end
   end
 end
