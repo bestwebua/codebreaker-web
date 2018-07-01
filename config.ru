@@ -1,8 +1,8 @@
 require 'codebreaker'
 require 'erb'
 require 'securerandom'
-require_relative 'lib/actions_inspector'
 require_relative 'lib/error_logger'
+require_relative 'lib/actions_inspector'
 require_relative 'lib/web'
 
 localization_dir = File.expand_path('./lib/locale/.', File.dirname(__FILE__))
