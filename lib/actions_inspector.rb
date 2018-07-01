@@ -7,7 +7,7 @@ module Codebreaker
     include Message
     include Utils
 
-    attr_reader :request, :locale, :restricted_access
+    attr_reader :request, :locale, :restricted_access, :player_name, :level
 
     def initialize(app)
       @app = app
@@ -17,6 +17,8 @@ module Codebreaker
       @request = Rack::Request.new(env)
       @locale = request.session.options[:locale]
       @restricted_access = [HINT_URL, SUBMIT_URL, FINISH_URL]
+      @player_name = request.params['player_name']
+      @level = request.params['level']
 
       if forbidden?
         error_template('error', 403) { message['body']['403_info'] }
@@ -32,7 +34,7 @@ module Codebreaker
       if restricted_access.include?(request.path)
         session_failed?
       elsif request.path == PLAY_URL
-        anonymous? && session_failed?
+        (anonymous? || fake_data?) && session_failed?
       end
     end
 
@@ -41,7 +43,12 @@ module Codebreaker
     end
 
     def anonymous?
-      !request.params['player_name'] || !request.params['level']
+      !player_name || !level
+    end
+
+    def fake_data?
+      levels = [Game::SIMPLE_LEVEL, Game::MIDDLE_LEVEL, Game::HARD_LEVEL]
+      !player_name[/\A\w{3,20}\z/] || !levels.include?(level)
     end
   end
 end
