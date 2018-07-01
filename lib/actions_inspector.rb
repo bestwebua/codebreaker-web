@@ -31,10 +31,14 @@ module Codebreaker
     private
 
     def forbidden?
-      if restricted_access.include?(request.path)
-        session_failed?
-      elsif request.path == PLAY_URL
-        (anonymous? || fake_data?) && session_failed?
+      case
+        when restricted_access.include?(request.path)
+          session_failed?
+        when request.path == PLAY_URL
+          (anonymous? || fake_data?) && session_failed?
+        when request.path == LANG_URL
+          fake_lang?
+        else false
       end
     end
 
@@ -49,6 +53,10 @@ module Codebreaker
     def fake_data?
       levels = [Game::SIMPLE_LEVEL, Game::MIDDLE_LEVEL, Game::HARD_LEVEL]
       !player_name[/\A\w{3,20}\z/] || !levels.include?(level.to_sym)
+    end
+
+    def fake_lang?
+      !locale.all.include?(request.params['lang']&.to_sym)
     end
   end
 end
