@@ -8,4 +8,6 @@ gem 'codebreaker2018'
 group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
+  gem 'codebreaker2018'
+  gem 'rack-test'
 end
