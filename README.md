@@ -8,7 +8,7 @@ Rack version of Codebreaker2018 [![Gem Version](https://badge.fury.io/rb/codebre
 * Rack 2.0.5
 * Twitter Bootstrap 4.1.1
 * HTML5/CSS/JS
-* Environment: CentOS 6.8/Puma3.11.4
+* Environment: CentOS 6.8/Puma 3.11
 
 ## Features
 
