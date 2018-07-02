@@ -21,7 +21,7 @@ Rack version of Codebreaker2018 [![Gem Version](https://badge.fury.io/rb/codebre
 7. Player motivation messages, js implementation.
 8. Guessed numbers marker, js implementation.
 9. Safe methods in Web class.
-10. Reloading scores before using.
+10. No DB usage. Application saves all data into YAML. Reloading scores before using.
 11. Implement ActionInspector middleware, restricted access for necessary application parts.
 12. Implement ErrorLogger, recording all hack attempts into log-file.
 13. Responsive design.
