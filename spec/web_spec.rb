@@ -7,6 +7,7 @@ module Codebreaker
     let(:app)            { Rack::Builder.parse_file('config.ru').first }
     let(:session)        { last_request.env['rack.session'] }
     let(:error_template) { expect(last_response.body).to include('error-template') }
+    let(:play_instance)  { post(Web::PLAY_URL, player_name: 'Tester', level: Game::SIMPLE_LEVEL.to_s) }
 
     describe "#{Web::ROOT_URL}" do
       context 'get-request' do
@@ -95,9 +96,7 @@ module Codebreaker
     describe "#{Web::PLAY_URL}" do
       context 'game configuration data valid' do
         context 'post-request' do
-          before do
-            post(Web::PLAY_URL, player_name: 'Tester', level: Game::SIMPLE_LEVEL.to_s)
-          end
+          before { play_instance }
 
           it 'sets game instance' do
             expect(session[:game]).to be_an_instance_of(Game)
@@ -177,9 +176,7 @@ module Codebreaker
 
     describe "#{Web::HINT_URL}" do
       context 'post-request' do
-        before do
-          post(Web::PLAY_URL, player_name: 'Tester', level: Game::SIMPLE_LEVEL.to_s)
-        end
+        before { play_instance }
 
         describe 'method call' do
           before do
