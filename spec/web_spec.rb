@@ -179,25 +179,32 @@ module Codebreaker
       context 'post-request' do
         before do
           post(Web::PLAY_URL, player_name: 'Tester', level: Game::SIMPLE_LEVEL.to_s)
-          get(Web::HINT_URL)
         end
 
         describe 'method call' do
           before do
             allow(session[:game]).to receive(:attempts).and_return(10)
             allow(session[:game]).to receive(:hints).and_return(10)
+            get(Web::HINT_URL)
           end
 
           after { get(Web::HINT_URL) }
 
-          specify { expect(session[:game]).to receive(:won?) }
-          specify { expect(session[:game]).to receive(:attempts) }
-          specify { expect(session[:game]).to receive(:hints) }
-          specify { expect(session[:game]).to receive(:hint) }
+          context '#hints_allowed?' do
+            specify { expect(session[:game]).to receive(:won?) }
+            specify { expect(session[:game]).to receive(:attempts) }
+            specify { expect(session[:game]).to receive(:hints) }
+          end
+
+          context '#hint' do
+            specify { expect(session[:game]).to receive(:hint) }
+          end
         end
 
         describe 'scenario' do
-          context 'when hints are allowed' do
+          context 'hints are allowed' do
+            before { get(Web::HINT_URL) }
+
             it 'sets player hint' do
               expect(session[:hint]).to be_an_instance_of(Integer)
             end
@@ -217,15 +224,35 @@ module Codebreaker
                 expect(last_response.body).to include('badge badge-light')
               end
             end
-
           end
 
-          context 'when hints are not allowed' do
-            
+          context 'hints are not allowed' do
+            before { get(Web::HINT_URL) }
+            after { get(Web::HINT_URL) }
+            let(:not_receive_hint) { expect(session[:game]).to_not receive(:hint) }
+
+            context 'game won' do
+              specify do
+                allow(session[:game]).to receive(:won?).and_return(true)
+                not_receive_hint
+              end
+            end
+
+            context 'no attempts left' do
+              specify do
+                allow(session[:game]).to receive(:attempts).and_return(0)
+                not_receive_hint
+              end
+            end
+
+            context 'no hints left' do
+              specify do
+                allow(session[:game]).to receive(:hints).and_return(0)
+                not_receive_hint
+              end
+            end
           end
         end
-
-        #specify { expect(last_response.body).to include('game-template') }
       end
     end
 
