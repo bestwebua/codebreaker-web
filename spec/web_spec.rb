@@ -26,6 +26,18 @@ module Codebreaker
       end
     end
 
+    describe 'unknown_url' do
+      context 'get-request' do
+        before { get('/unknown_url') }
+
+        specify { expect(last_response.status).to eq(404) }
+
+        it 'render error template' do
+          error_template
+        end
+      end
+    end
+
     describe "#{Web::LANG_URL}" do
       context 'lang selector valid' do
         context 'post-request' do
@@ -56,7 +68,9 @@ module Codebreaker
       context 'lang selector invalid' do
         context 'get-request' do
           before { get(Web::LANG_URL) }
+
           specify { expect(last_response.status).to eq(403) }
+
           it 'render error template' do
             error_template
           end
@@ -67,7 +81,9 @@ module Codebreaker
             get(Web::ROOT_URL)
             post(Web::LANG_URL, lang: 'fake')
           end
+
           specify { expect(last_response.status).to eq(403) }
+
           it 'render error template' do
             error_template
           end
@@ -135,7 +151,9 @@ module Codebreaker
       context 'game configuration data invalid' do
         context 'get-request' do
           before { get Web::PLAY_URL }
+
           specify { expect(last_response.status).to eq(403) }
+
           it 'render error template' do
             error_template
           end
@@ -148,6 +166,7 @@ module Codebreaker
           end
 
           specify { expect(last_response.status).to eq(403) }
+
           it 'render error template' do
             error_template
           end
@@ -178,14 +197,6 @@ describe 'application errors' do
         context "#{Web::FINISH_URL}" do
           before { get Web::SUBMIT_URL }
           specify { expect(last_response.status).to eq(403) }
-          specify { error_template }
-        end
-      end
-
-      context 'not found' do
-        context '/unknown_url' do
-          before { get '/unknown_url' }
-          specify { expect(last_response.status).to eq(404) }
           specify { error_template }
         end
       end
