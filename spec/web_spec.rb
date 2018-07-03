@@ -60,6 +60,7 @@ module Codebreaker
 
           it 'load current page with new locale' do
             follow_redirect!
+            expect(last_response.status).to eq(200)
             expect(last_response.body).to include("<html lang=\"ru\">")
           end
         end
@@ -130,7 +131,7 @@ module Codebreaker
                 allow_any_instance_of(Game).to receive(:won?).and_return(true)
               end
 
-              it "redirects to '#{Web::FINISH_URL}'" do
+              it "GET: '#{Web::FINISH_URL}' 200" do
                 get(Web::FINISH_URL)
                 expect(last_response.status).to eq(200)
               end
@@ -139,7 +140,7 @@ module Codebreaker
             context 'system error' do
               before { session.clear }
 
-              it "redirects to '#{Web::ROOT_URL}'" do
+              it "GET: '#{Web::ROOT_URL}' 200" do
                 get(Web::ROOT_URL)
                 expect(last_response.status).to eq(200)
               end
@@ -174,6 +175,59 @@ module Codebreaker
       end
     end
 
+    describe "#{Web::HINT_URL}" do
+      context 'post-request' do
+        before do
+          post(Web::PLAY_URL, player_name: 'Tester', level: Game::SIMPLE_LEVEL.to_s)
+          get(Web::HINT_URL)
+        end
+
+        describe 'method call' do
+          before do
+            allow(session[:game]).to receive(:attempts).and_return(10)
+            allow(session[:game]).to receive(:hints).and_return(10)
+          end
+
+          after { get(Web::HINT_URL) }
+
+          specify { expect(session[:game]).to receive(:won?) }
+          specify { expect(session[:game]).to receive(:attempts) }
+          specify { expect(session[:game]).to receive(:hints) }
+          specify { expect(session[:game]).to receive(:hint) }
+        end
+
+        describe 'scenario' do
+          context 'when hints are allowed' do
+            it 'sets player hint' do
+              expect(session[:hint]).to be_an_instance_of(Integer)
+            end
+
+            it "GET: '#{Web::HINT_URL}' 302" do
+              expect(last_response.status).to eq(302)
+            end
+
+            context 'next action' do
+              before { follow_redirect! }
+
+              it "GET: '#{Web::PLAY_URL}' 200" do
+                expect(last_response.status).to eq(200)
+              end
+
+              it 'render hint' do
+                expect(last_response.body).to include('badge badge-light')
+              end
+            end
+
+          end
+
+          context 'when hints are not allowed' do
+            
+          end
+        end
+
+        #specify { expect(last_response.body).to include('game-template') }
+      end
+    end
 
   end
 end
