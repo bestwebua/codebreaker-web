@@ -27,7 +27,7 @@ module Codebreaker
       end
     end
 
-    describe 'unknown_url' do
+    describe '/unknown_url' do
       context 'get-request' do
         before { get('/unknown_url') }
 
@@ -276,27 +276,20 @@ module Codebreaker
   end
 end
 
-
 =begin
 describe 'application errors' do
-      context 'restricted access' do
-        context "#{Web::HINT_URL}" do
-          before { get Web::HINT_URL }
-          specify { expect(last_response.status).to eq(403) }
-          specify { error_template }
-        end
-
-        context "#{Web::SUBMIT_URL}" do
-          before { get Web::SUBMIT_URL }
-          specify { expect(last_response.status).to eq(403) }
-          specify { error_template }
-        end
-
-        context "#{Web::FINISH_URL}" do
-          before { get Web::SUBMIT_URL }
-          specify { expect(last_response.status).to eq(403) }
-          specify { error_template }
-        end
-      end
+  context 'restricted access' do
+    context "#{Web::SUBMIT_URL}" do
+      before { get Web::SUBMIT_URL }
+      specify { expect(last_response.status).to eq(403) }
+      specify { error_template }
     end
+
+    context "#{Web::FINISH_URL}" do
+      before { get Web::SUBMIT_URL }
+      specify { expect(last_response.status).to eq(403) }
+      specify { error_template }
+    end
+  end
+end
 =end
