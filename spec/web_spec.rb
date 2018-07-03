@@ -156,20 +156,13 @@ module Codebreaker
     end
 
 
+  end
+end
 
 
-
-
-    skip describe 'application errors' do
+=begin
+describe 'application errors' do
       context 'restricted access' do
-        context "#{Web::LANG_URL}" do
-          before { get Web::LANG_URL }
-          specify { expect(last_response.status).to eq(403) }
-          specify { error_template }
-        end
-
-        
-
         context "#{Web::HINT_URL}" do
           before { get Web::HINT_URL }
           specify { expect(last_response.status).to eq(403) }
@@ -197,6 +190,4 @@ module Codebreaker
         end
       end
     end
-
-  end
-end
+=end
