@@ -319,6 +319,21 @@ module Codebreaker
 
               specify { status_302 }
 
+              context '#save_game_data' do
+                let(:yml) { "#{File.expand_path('../lib/data', File.dirname(__FILE__))}" }
+                let(:last_saved_object) { GameData.new(yml).send(:load_game_data).last }
+                let(:object_token) { last_saved_object.token }
+                let(:object_ip) { last_saved_object.ip }
+
+                context 'score object token' do
+                  specify { expect(object_token).to_not be_nil }
+                end
+
+                context 'score object ip' do
+                  specify { expect(object_ip).to_not be_nil }
+                end
+              end
+
               context 'game won' do
                 before do
                   won_a_game
@@ -423,6 +438,10 @@ module Codebreaker
           specify { error_template }
         end
       end
+    end
+
+    describe "#{Web::FINISH_URL}" do
+
     end
 
   end
