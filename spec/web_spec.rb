@@ -4,17 +4,19 @@ module Codebreaker
   RSpec.describe Web do
     include Rack::Test::Methods
 
-    let(:app)            { Rack::Builder.parse_file('config.ru').first }
-    let(:session)        { last_request.env['rack.session'] }
-    let(:status_200)     { expect(last_response.status).to eq(200) }
-    let(:status_302)     { expect(last_response.status).to eq(302) }
-    let(:status_403)     { expect(last_response.status).to eq(403) }
-    let(:status_404)     { expect(last_response.status).to eq(404) }
-    let(:error_template) { expect(last_response.body).to include('error-template') }
-    let(:play_instance)  { post(Web::PLAY_URL, player_name: 'Tester', level: Game::SIMPLE_LEVEL.to_s) }
-    let(:won_a_game)     { allow(session[:game]).to receive(:won?).and_return(true) }
-    let(:lost_a_game)    { allow(session[:game]).to receive(:attempts).and_return(0) }
-    let(:use_all_hints)  { allow(session[:game]).to receive(:hints).and_return(0) }
+    let(:app)             { Rack::Builder.parse_file('config.ru').first }
+    let(:session)         { last_request.env['rack.session'] }
+    let(:status_200)      { expect(last_response.status).to eq(200) }
+    let(:status_302)      { expect(last_response.status).to eq(302) }
+    let(:status_403)      { expect(last_response.status).to eq(403) }
+    let(:status_404)      { expect(last_response.status).to eq(404) }
+    let(:error_template)  { expect(last_response.body).to include('error-template') }
+    let(:game_template)   { expect(last_response.body).to include('game-template') }
+    let(:scores_template) { expect(last_response.body).to include('scores-template') }
+    let(:play_instance)   { post(Web::PLAY_URL, player_name: 'Tester', level: Game::SIMPLE_LEVEL.to_s) }
+    let(:won_a_game)      { allow(session[:game]).to receive(:won?).and_return(true) }
+    let(:lost_a_game)     { allow(session[:game]).to receive(:attempts).and_return(0) }
+    let(:use_all_hints)   { allow(session[:game]).to receive(:hints).and_return(0) }
 
     describe "#{Web::ROOT_URL}" do
       context 'get-request' do
@@ -124,7 +126,11 @@ module Codebreaker
               specify { status_200 }
 
               it 'render game template' do
-                expect(last_response.body).to include('game-template')
+                game_template
+              end
+
+              it 'motivation message' do
+                expect(last_response.body).to include('hideAlert')
               end
             end
 
@@ -271,21 +277,21 @@ module Codebreaker
     end
 
     describe "#{Web::SUBMIT_URL}" do
-      context 'game configuration data valid' do
-        context 'post-request' do
-          let(:user_input) { '1234' }
+      let(:valid_user_input) { '1234' }
+      let(:invalid_user_input) { 1234 }
 
-          before do
-            play_instance
-            post(Web::SUBMIT_URL, number: user_input)
-          end
+      context 'game configuration data valid' do
+        before { play_instance }
+
+        context 'post-request' do
+          before { post(Web::SUBMIT_URL, number: valid_user_input) }
 
           describe 'method call' do
             before do
               allow(session[:game]).to receive(:guess_valid?)
             end
 
-            after { post(Web::SUBMIT_URL, number: user_input) }
+            after { post(Web::SUBMIT_URL, number: valid_user_input) }
 
             it '#guess_valid?' do
               expect(session[:game]).to receive(:won?)
@@ -294,7 +300,7 @@ module Codebreaker
 
           describe 'session' do
             it 'sets last guess' do
-              expect(session[:last_guess]).to eq(user_input)
+              expect(session[:last_guess]).to eq(valid_user_input)
             end
 
             it 'sets marker' do
@@ -304,16 +310,19 @@ module Codebreaker
 
           describe 'scenario' do
             context 'game over' do
-              after { post(Web::SUBMIT_URL, number: user_input) }
-              let(:scores_template) { expect(last_response.body).to include('scores-template') }
+              after { post(Web::SUBMIT_URL, number: valid_user_input) }
+              let(:follow_redirect_twice!) { 2.times { follow_redirect! } }
+              let(:current_score) do
+                scores_template
+                expect(last_response.body).to include('current-score')
+              end
 
               specify { status_302 }
 
               context 'game won' do
                 before do
                   won_a_game
-                  follow_redirect!
-                  follow_redirect!
+                  follow_redirect_twice!
                 end
 
                 it "GET: '#{Web::FINISH_URL}' 200" do
@@ -321,15 +330,14 @@ module Codebreaker
                 end
 
                 it 'render player results' do
-                  scores_template
+                  current_score
                 end
               end
 
               context 'no attempts left' do
                 before do
                   lost_a_game
-                  follow_redirect!
-                  follow_redirect!
+                  follow_redirect_twice!
                 end
 
                 it "GET: '#{Web::FINISH_URL}' 200" do
@@ -337,23 +345,83 @@ module Codebreaker
                 end
 
                 it 'render player results' do
-                  scores_template
+                  current_score
                 end
               end
             end
 
             context 'game still going on' do
+              before { follow_redirect! }
 
+              it 'session: sets hint' do
+                expect(session[:hint]).to be(false)
+              end
+
+              it "GET: '#{Web::PLAY_URL}' 200" do
+                status_200
+              end
+
+              it 'render game template' do
+                game_template
+              end
             end
           end
+        end
 
+        context 'get-request' do
+          before { get(Web::SUBMIT_URL) }
 
+          specify { status_302 }
 
+          context 'next action' do
+            before { follow_redirect! }
+
+            it "GET: '#{Web::PLAY_URL}' 200" do
+              status_200
+            end
+
+            it 'render game template' do
+              game_template
+            end
+          end
         end
       end
 
       context 'game configuration data invalid' do
-        
+        describe 'post-request' do
+          context 'empty session' do
+            before { post Web::SUBMIT_URL }
+            specify { status_403 }
+            specify { error_template }
+          end
+
+          context 'fake input' do
+            before do
+              play_instance
+              post(Web::SUBMIT_URL, number: invalid_user_input)
+            end
+
+            specify { status_302 }
+
+            context 'next action' do
+              before { follow_redirect! }
+
+              it "GET: '#{Web::PLAY_URL}' 200" do
+                status_200
+              end
+
+              it 'render game template' do
+                game_template
+              end
+            end
+          end
+        end
+
+        describe 'get-request' do
+          before { get Web::SUBMIT_URL }
+          specify { status_403 }
+          specify { error_template }
+        end
       end
     end
 
@@ -363,12 +431,6 @@ end
 =begin
 describe 'application errors' do
   context 'restricted access' do
-    context "#{Web::SUBMIT_URL}" do
-      before { get Web::SUBMIT_URL }
-      specify { status_403 }
-      specify { error_template }
-    end
-
     context "#{Web::FINISH_URL}" do
       before { get Web::SUBMIT_URL }
       specify { status_403 }
