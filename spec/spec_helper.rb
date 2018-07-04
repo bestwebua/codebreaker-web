@@ -1,8 +1,12 @@
 require 'rack/test'
 require 'codebreaker'
 
+rspec_custom = File.join(File.dirname(__FILE__), 'support/**/*.rb')
 lib = File.join(File.dirname(__FILE__), '../lib/*.rb')
-Dir[File.expand_path(lib)].each { |file| require file }
+
+[rspec_custom, lib].each do |folder|
+  Dir[File.expand_path(folder)].each { |file| require file }
+end
 
 RSpec.configure do |config|
   
