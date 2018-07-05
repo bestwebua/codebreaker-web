@@ -57,19 +57,15 @@ module Codebreaker
     end
 
     def play
-      begin
-        create_game_instance
-        generate_token
-        set_client_ip
+      create_game_instance
+      generate_token
+      set_client_ip
 
-        if game_over?
-          go_to(FINISH_URL)
-        else
-          scores || load_scores
-          template('game')
-        end
-      rescue
-        go_to(ROOT_URL)
+      if game_over?
+        go_to(FINISH_URL)
+      else
+        scores || load_scores
+        template('game')
       end
     end
 
