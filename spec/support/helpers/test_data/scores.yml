@@ -7,3 +7,11 @@
   score: 20
   token: fbe517bc-4718-4a2d-8527-b3e86429d43e
   ip: 127.0.0.1
+- !ruby/struct:Codebreaker::Score
+  date: 2018-07-05 19:54:14.207924143 +03:00
+  player_name: Tester
+  winner: false
+  level: :hard
+  score: -200
+  token: 9fbdde77-c4a2-41c4-b425-ed9d253ca3ae
+  ip: 127.0.0.1
