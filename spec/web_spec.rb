@@ -486,7 +486,13 @@ module Codebreaker
           end
 
           context 'game still going on' do
+            before { get(Web::FINISH_URL) }
+
+            specify { status_302 }
+
             context 'next action' do
+              before { follow_redirect! }
+
               it "GET: '#{Web::PLAY_URL}' 200" do
                 status_200
               end
