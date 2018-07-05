@@ -197,7 +197,7 @@ module Codebreaker
 
     describe "#{Web::HINT_URL}" do
       context 'game configuration data valid' do
-        context 'post-request' do
+        context 'get-request' do
           before { play_instance }
 
           describe 'method call' do
@@ -524,6 +524,27 @@ module Codebreaker
         
         it 'render index template' do
           expect(last_response.body).to include('scores-template')
+        end
+      end
+    end
+
+    describe 'ErrorLogger middleware' do
+      before { delete_error_log }
+      after  { delete_error_log }
+
+      let(:error_log) { @env.tracking_files.last }
+      let(:delete_error_log) { FileUtils.rm(error_log, :force => true) }
+      let(:check_log) { expect(File.zero?(error_log)).to_not be(true) }
+
+      describe 'tracked errors' do
+        context '403' do
+          before { get(Web::PLAY_URL) }
+          specify { check_log }
+        end
+        
+        context '404' do
+          before { get('/unknown_url') }
+          specify { check_log }
         end
       end
     end
