@@ -2,7 +2,9 @@ require 'simplecov'
 require 'rack/test'
 require 'codebreaker'
 
-SimpleCov.start
+SimpleCov.start do
+  add_filter 'spec/'
+end
 
 rspec_custom = File.join(File.dirname(__FILE__), 'support/**/*.rb')
 lib = File.join(File.dirname(__FILE__), '../lib/*.rb')
