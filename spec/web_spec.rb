@@ -2,8 +2,6 @@ require 'spec_helper'
 
 module Codebreaker
   RSpec.describe Web do
-    include Rack::Test::Methods
-
     before(:context) do
       current_yml = "#{File.expand_path('../lib/data/scores.yml', File.dirname(__FILE__))}"
       current_log = "#{File.expand_path('../error.log', File.dirname(__FILE__))}"
@@ -70,16 +68,43 @@ module Codebreaker
             last_request.env['rack.session.options'][:locale].lang
           end
 
-          it 'change current locale' do
-            expect(current_locale).to eq(:ru)
-          end
+          describe 'scenario' do
+            it 'change current locale' do
+              expect(current_locale).to eq(:ru)
+            end
 
-          specify { status_302 }
+            specify { status_302 }
 
-          it 'load current page with new locale' do
-            follow_redirect!
-            status_200
-            expect(last_response.body).to include("<html lang=\"ru\">")
+            context 'no referer' do
+              before { follow_redirect! }
+
+              specify { status_200 }
+
+              it 'load new locale' do
+                expect(last_response.body).to include("<html lang=\"ru\">")
+              end
+            
+              it 'render index template' do
+                expect(last_response.body).to include("index-template")
+              end
+            end
+
+            context 'referer present' do
+              before do
+                allow_any_instance_of(::Rack::Request).to receive(:referer)
+                post(Web::SCORES_URL)
+              end
+
+              specify { status_200 }
+
+              it 'load new locale' do
+                expect(last_response.body).to include("<html lang=\"ru\">")
+              end
+            
+              it 'render current template' do
+                expect(last_response.body).to include("scores-template")
+              end
+            end
           end
         end
       end
