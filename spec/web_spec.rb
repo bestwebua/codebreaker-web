@@ -4,6 +4,17 @@ module Codebreaker
   RSpec.describe Web do
     include Rack::Test::Methods
 
+    before(:context) do
+      current_yml = "#{File.expand_path('../lib/data/scores.yml', File.dirname(__FILE__))}"
+      current_log = "#{File.expand_path('../error.log', File.dirname(__FILE__))}"
+      @env = FileChef.new(current_yml, current_log)
+      @env.make
+    end
+
+    after(:context) do
+      @env.clear
+    end
+
     let(:app)             { Rack::Builder.parse_file('config.ru').first }
     let(:session)         { last_request.env['rack.session'] }
     let(:status_200)      { expect(last_response.status).to eq(200) }
