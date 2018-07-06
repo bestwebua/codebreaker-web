@@ -25,6 +25,7 @@ Rack version of Codebreaker2018 [![Gem Version](https://badge.fury.io/rb/codebre
 11. Implement ActionInspector middleware, restricted access for necessary application parts.
 12. Implement ErrorLogger, recording all hack attempts into log-file.
 13. Responsive design.
+14. RSpec tests.
 
 ## Contributing
 
