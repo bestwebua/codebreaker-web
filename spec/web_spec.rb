@@ -89,10 +89,29 @@ module Codebreaker
               end
             end
 
-            context 'referer present' do
+            context 'change locale from root path' do
               before do
-                allow_any_instance_of(::Rack::Request).to receive(:referer)
-                post(Web::SCORES_URL)
+                allow_any_instance_of(Rack::Request).to receive(:referer).and_return('bad')
+                post(Web::LANG_URL, lang: 'ru')
+                follow_redirect!
+              end
+
+              specify { status_200 }
+
+              it 'load new locale' do
+                expect(last_response.body).to include("<html lang=\"ru\">")
+              end
+            
+              it 'render index template' do
+                expect(last_response.body).to include("index-template")
+              end
+            end
+
+            context 'change locale from other places' do
+              before do
+                allow_any_instance_of(Rack::Request).to receive(:referer).and_return("http://example.com#{Web::SCORES_URL}")
+                post(Web::LANG_URL, lang: 'ru')
+                follow_redirect!
               end
 
               specify { status_200 }
