@@ -6,10 +6,10 @@ SimpleCov.start do
   add_filter 'spec/'
 end
 
-rspec_custom = File.join(File.dirname(__FILE__), 'support/**/*.rb')
 lib = File.join(File.dirname(__FILE__), '../lib/*.rb')
+rspec_custom = File.join(File.dirname(__FILE__), 'support/**/*.rb')
 
-[rspec_custom, lib].each do |folder|
+[lib, rspec_custom].each do |folder|
   Dir[File.expand_path(folder)].each { |file| require file }
 end
 
