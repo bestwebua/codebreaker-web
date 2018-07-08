@@ -91,7 +91,7 @@ module Codebreaker
 
             context 'change locale from root path' do
               before do
-                allow_any_instance_of(Rack::Request).to receive(:referer).and_return('bad')
+                allow_any_instance_of(Rack::Request).to receive(:referer).and_return('url_without_double_slash')
                 post(Web::LANG_URL, lang: 'ru')
                 follow_redirect!
               end
