@@ -1,5 +1,6 @@
 require_relative 'consts'
 require_relative 'utils'
+require_relative 'rate'
 
 module Codebreaker
   class Web
@@ -9,6 +10,7 @@ module Codebreaker
     include WebGameConfig
     include TemplatesConst
     include Utils
+    include Rate
     include UserScore
     include Storage
 
@@ -23,7 +25,7 @@ module Codebreaker
       @locale = request.session.options[:locale]
       expand_score_class
       define_session_accessors
-      apply_external_path(File.expand_path("./lib/data"))
+      apply_external_path(File.expand_path('./lib/data'))
     end
 
     def response
