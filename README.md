@@ -19,6 +19,10 @@ Rack version of Codebreaker2018 [![Gem Version](https://badge.fury.io/rb/codebre
 13. Responsive design.
 14. RSpec tests, 100% coverage.
 
+## Demo
+
+http://codebreaker.bestweb.com.ua:9292
+
 ![CodebreakerWeb screenshot](https://raw.githubusercontent.com/bestwebua/homework-05-codebreaker-web/feature/base_version/public/images/screenshot.png)
 
 ## Technology summary
