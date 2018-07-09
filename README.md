@@ -2,16 +2,6 @@
 
 Rack version of Codebreaker2018 [![Gem Version](https://badge.fury.io/rb/codebreaker2018.svg)](https://badge.fury.io/rb/codebreaker2018). Try to guess 4-digit number, that consists of numbers in a range between 1 to 6.
 
-## Technology summary
-
-* Ruby 2.5.0
-* Rack 2.0.5
-* codebreaker2018 0.3.5
-* Twitter Bootstrap 4.1.1
-* HTML5/CSS/JS
-* Environment: CentOS 6.8/Puma 3.11
-* Testing: RSpec 3.7, simplecov 0.16
-
 ## Features
 
 1. Ability to change the language from anywhere in the application. English and Russian localizations.
@@ -28,6 +18,18 @@ Rack version of Codebreaker2018 [![Gem Version](https://badge.fury.io/rb/codebre
 12. Implement ErrorLogger, recording all hack attempts into log-file.
 13. Responsive design.
 14. RSpec tests, 100% coverage.
+
+![CodebreakerWeb screenshot](https://raw.githubusercontent.com/bestwebua/homework-05-codebreaker-web/feature/base_version/public/images/screenshot.png)
+
+## Technology summary
+
+* Ruby 2.5.0
+* Rack 2.0.5
+* codebreaker2018 0.3.5
+* Twitter Bootstrap 4.1.1
+* HTML5/CSS/JS
+* Environment: CentOS 6.8/Puma 3.11
+* Testing: RSpec 3.7, simplecov 0.16
 
 ## Contributing
 
