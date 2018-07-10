@@ -1,5 +1,6 @@
+# CodebreakerWeb
 [code_climate]: https://codeclimate.com/github/bestwebua/homework-05-codebreaker-web
-# CodebreakerWeb [![Test Coverage](https://api.codeclimate.com/v1/badges/5b446f43b805420285006f76/test_coverage)][code_climate]
+[![Test Coverage](https://api.codeclimate.com/v1/badges/5b446f43b805420285006f76/test_coverage)][code_climate]
 
 Rack version of Codebreaker2018 [![Gem Version](https://badge.fury.io/rb/codebreaker2018.svg)](https://badge.fury.io/rb/codebreaker2018). Try to guess 4-digit number, that consists of numbers in a range between 1 to 6.
 
