@@ -1,3 +1,5 @@
+[code_climate]: https://codeclimate.com/github/bestwebua/homework-05-codebreaker-web
+
 # CodebreakerWeb
 [![Test Coverage](https://api.codeclimate.com/v1/badges/5b446f43b805420285006f76/test_coverage)][code_climate]
 
