@@ -9,5 +9,6 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'codebreaker2018'
   gem 'rack-test'
-  gem 'simplecov'
+  gem 'simplecov', '~> 0.13.0'
+  gem 'codeclimate-test-reporter'
 end
