@@ -1,5 +1,5 @@
 # CodebreakerWeb
-<a href="https://codeclimate.com/github/bestwebua/homework-05-codebreaker-web/maintainability"><img src="https://api.codeclimate.com/v1/badges/8323f51857468b277816/maintainability" /></a> <a href="https://codeclimate.com/github/bestwebua/homework-05-codebreaker-web/test_coverage"><img src="https://api.codeclimate.com/v1/badges/8323f51857468b277816/test_coverage" /></a>
+<a href="https://codeclimate.com/github/bestwebua/homework-05-codebreaker-web/maintainability"><img src="https://api.codeclimate.com/v1/badges/8323f51857468b277816/maintainability" /></a> <a href="https://codeclimate.com/github/bestwebua/homework-05-codebreaker-web/test_coverage"><img src="https://api.codeclimate.com/v1/badges/8323f51857468b277816/test_coverage" /></a> <img src="https://img.shields.io/badge/monkey--patches-0-brightgreen.svg">
 
 Rack version of codebreaker2018 [![Gem Version](https://badge.fury.io/rb/codebreaker2018.svg)](https://badge.fury.io/rb/codebreaker2018). Try to guess 4-digit number, that consists of numbers in a range between 1 to 6.
 
