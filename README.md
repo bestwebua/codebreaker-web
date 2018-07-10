@@ -1,9 +1,7 @@
-[code_climate]: https://codeclimate.com/github/bestwebua/homework-05-codebreaker-web
-
 # CodebreakerWeb
-[![Test Coverage](https://api.codeclimate.com/v1/badges/5b446f43b805420285006f76/test_coverage)][code_climate]
+<a href="https://codeclimate.com/github/bestwebua/homework-05-codebreaker-web/maintainability"><img src="https://api.codeclimate.com/v1/badges/8323f51857468b277816/maintainability" /></a> <a href="https://codeclimate.com/github/bestwebua/homework-05-codebreaker-web/test_coverage"><img src="https://api.codeclimate.com/v1/badges/8323f51857468b277816/test_coverage" /></a>
 
-Rack version of Codebreaker2018 [![Gem Version](https://badge.fury.io/rb/codebreaker2018.svg)](https://badge.fury.io/rb/codebreaker2018). Try to guess 4-digit number, that consists of numbers in a range between 1 to 6.
+Rack version of codebreaker2018 [![Gem Version](https://badge.fury.io/rb/codebreaker2018.svg)](https://badge.fury.io/rb/codebreaker2018). Try to guess 4-digit number, that consists of numbers in a range between 1 to 6.
 
 ## Features
 
@@ -41,7 +39,6 @@ http://codebreaker.bestweb.com.ua:9292
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/bestwebua/homework-05-codebreaker-web. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
 
 ## License
 
