@@ -575,6 +575,21 @@ module Codebreaker
         it 'render index template' do
           expect(last_response.body).to include('scores-template')
         end
+
+        describe 'scenario' do
+          context 'no results' do
+            before do
+              allow_any_instance_of(Web).to receive(:storage_path).and_return(false)
+              get(Web::SCORES_URL)
+            end
+
+            specify { expect(last_response.body).to include('empty-scores') }
+          end
+
+          context 'results exists' do
+            specify { expect(last_response.body).to include('top-scores') }
+          end
+        end
       end
     end
 
