@@ -9,10 +9,12 @@
 <hr class="mb-4">
 
 <% if scores.empty? %>
+  <!-- empty-scores -->
   <h3 class="text-white">
     <%= message['body']['no_scores'] %>
   </h3>
 <% else %>
+  <!-- top-scores -->
   <div class="table-responsive-md scores">
     <table class="table table-striped table table-sm">
       <thead>
