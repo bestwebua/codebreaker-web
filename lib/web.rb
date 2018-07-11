@@ -1,6 +1,6 @@
-require_relative 'consts'
-require_relative 'utils'
-require_relative 'rate'
+%w[urls web_game_config templates_const utils rate].each do |file|
+  require_relative file
+end
 
 module Codebreaker
   class Web

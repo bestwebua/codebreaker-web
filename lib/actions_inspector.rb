@@ -1,4 +1,4 @@
-require_relative 'consts'
+require_relative 'urls'
 require_relative 'utils'
 
 module Codebreaker
