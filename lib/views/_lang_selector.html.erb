@@ -1,0 +1,12 @@
+<div id="lang_menu">
+  <form method="post" action="<%= Web::LANG_URL %>">
+    <select class="custom-select" id="langSelect" name="lang" onchange='this.form.submit()'>
+      <option value="en"><%= message['form']['lang']['eng'] %></option>
+      <option value="ru"><%= message['form']['lang']['rus'] %></option>
+    </select>
+    <noscript><input type="submit"></noscript>
+  </form>
+</div>
+<script type="text/javascript">
+  document.getElementById("langSelect").value = "<%= locale.lang %>";
+</script>

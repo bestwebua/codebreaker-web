@@ -1,0 +1,3 @@
+<a class="btn btn-primary btn-lg" href="<%= Web::ROOT_URL %>" role="button">
+  <%= request.path == Web::FINISH_URL ? message['form']['submit']['play_again'] : message['form']['submit']['home'] %>
+</a>

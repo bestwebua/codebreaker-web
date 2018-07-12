@@ -1,0 +1,42 @@
+<!-- game-template -->
+<!doctype html>
+<html lang="<%= locale.lang %>">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="<%= message['headers']['app_name'] %>">
+    <meta name="author" content="<%= message['headers']['author'] %>">
+    <link href="favicon.ico" rel="icon">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/motivation.js"></script>
+    <title><%= message['headers']['app_name'] %></title>
+  </head>
+  <body>
+    <section id="introduction">
+      <div class="container">
+        <div class="row fill-viewport align-items-center">
+          <div class="col-12 col-md-6">
+            <div class="row">
+              <div class="col-md-auto">
+                <h1 class="text-white title"><%= message['body']['app_name'] %></h1>
+              </div>
+              <div class="col"><%= render('_lang_selector') %></div>
+            </div>
+            <p class="lead text-white-70">
+              <%= message['ui']['hello'] %>, <%= game.configuration.player_name %>!
+              <%= message['body']['intro'] %>
+            </p>
+            <%= render('_user_settings') %>
+            <%= render('_guess_form') %>
+            <%= render('_geminfo') %>
+          </div>
+        </div>
+       </div>
+    </section>
+    <script src="js/guess_marker.js"></script>
+    <%= render('_analytics') %>
+  </body>
+</html>

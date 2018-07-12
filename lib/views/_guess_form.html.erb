@@ -1,0 +1,32 @@
+<hr class="mb-4">
+
+<form method="post" action="<%= Web::SUBMIT_URL %>">
+  <div class="form-group">
+    <input class="form-control guess_input" name="number" pattern="^[1-6]{4}$" placeholder='<%= last_guess %>' required <%= 'autofocus' if first_attempt? %> autocomplete='off'>
+  </div>
+
+  <% unless game.won? %>
+    <div class="form-group guess_markers_list">
+      <div id="guess_marker">
+        <%= marker %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= render('_motivation') %>
+
+  <hr class="mb-4">
+
+  <button type="submit" class="btn btn-primary btn-lg">
+    <%= message['form']['submit']['answer'] %>
+  </button>
+  
+  <a class="btn btn-warning btn-lg float-right <%= 'disabled' unless hints_allowed? %>" href="<%= Web::HINT_URL %>" role="button">
+    <%= message['form']['submit']['hint'] %>
+    <% if hint %>
+      <span class="badge badge-light">
+        <%= hint %>
+      </span>
+    <% end %>
+  </a>
+</form>
