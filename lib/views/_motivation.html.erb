@@ -1,0 +1,13 @@
+<% unless first_attempt? %>
+  <div id="motivation" class="alert alert-info alert-dismissible fade show" role="alert">
+    <div class="message">
+      <%= motivation_message(message['alerts']['motivation']) %>
+    </div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  hideAlert("motivation");
+</script>

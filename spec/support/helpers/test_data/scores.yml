@@ -1,0 +1,50 @@
+---
+- !ruby/struct:Codebreaker::Score
+  date: 2018-07-04 19:09:28.490410929 +03:00
+  player_name: Tester
+  winner: true
+  level: :middle
+  score: 50
+  token: fbe517bc-2394-4a2d-0912-v7e86429d43e
+  ip: 127.0.0.1
+- !ruby/struct:Codebreaker::Score
+  date: 2018-07-04 19:09:28.490410929 +03:00
+  player_name: Tester
+  winner: true
+  level: :hard
+  score: 30
+  token: fbe517bc-2394-4a2d-8527-v7e86429d43e
+  ip: 127.0.0.1
+- !ruby/struct:Codebreaker::Score
+  date: 2018-07-04 19:09:28.490410929 +03:00
+  player_name: Tester
+  winner: true
+  level: :simple
+  score: 100
+  token: fbe517bc-4718-4a2d-8527-v7e86429d43e
+  ip: 127.0.0.1
+- !ruby/struct:Codebreaker::Score
+  date: 2018-07-04 19:09:28.490410929 +03:00
+  player_name: Tester
+  winner: true
+  level: :simple
+  score: 20
+  token: fbe517bc-4718-4a2d-8527-b3e86429d43e
+  ip: 127.0.0.1
+- !ruby/struct:Codebreaker::Score
+  date: 2018-07-05 19:54:14.207924143 +03:00
+  player_name: Tester
+  winner: false
+  level: :simple
+  score: -100
+  token: 9fbdde77-c4a2-41c4-b425-ed9d100ca3ae
+  ip: 127.0.0.1
+- !ruby/struct:Codebreaker::Score
+  date: 2018-07-05 19:54:14.207924143 +03:00
+  player_name: Tester
+  winner: false
+  level: :hard
+  score: -200
+  token: 9fbdde77-c4a2-41c4-b425-ed9d253ca3ae
+  ip: 127.0.0.1
+  

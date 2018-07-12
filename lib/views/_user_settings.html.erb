@@ -1,0 +1,26 @@
+<hr class="mb-4">
+
+<div class="row">
+  <div class="col button">
+    <button type="button" class="btn btn-primary">
+      <%= message['ui']['level'] %>: 
+      <span class="badge badge-light">
+        <%= message['form']['level'][game.configuration.level.to_s] %>
+      </span>
+    </button>
+  </div>
+
+  <div class="col text-center button">
+    <button type="button" class="btn btn-primary">
+      <%= message['ui']['attempts'] %>: 
+      <span class="badge badge-light"><%= game.attempts %></span>
+    </button>
+  </div>
+
+  <div class="col button">
+    <button type="button" class="btn btn-primary float-right">
+      <%= message['ui']['hints'] %>: 
+      <span class="badge badge-light"><%= game.hints %></span>
+    </button>
+  </div>
+</div>

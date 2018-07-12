@@ -1,0 +1,48 @@
+<% unless scores.empty? %>
+  <p class="lead text-white-70">
+    <%= message['form']['submit']['top_start'] %> 
+    <%= Web::TOTAL_PLAYERS %> 
+    <%= message['form']['submit']['top_end'] %>:
+  </p>
+<% end %>
+
+<hr class="mb-4">
+
+<% if scores.empty? %>
+  <!-- empty-scores -->
+  <h3 class="text-white">
+    <%= message['body']['no_scores'] %>
+  </h3>
+<% else %>
+  <!-- top-scores -->
+  <div class="table-responsive-md scores">
+    <table class="table table-striped table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col"><%= message['table']['name'] %></th>
+          <th scope="col"><%= message['table']['level'] %></th>
+          <th scope="col"><%= message['table']['score'] %></th>
+          <th scope="col"><%= message['table']['summary'] %></th>
+          <th scope="col"><%= message['table']['date'] %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% top_players.first(Web::TOTAL_PLAYERS).each_with_index do |object, index| %>
+          <tr>
+            <th scope="row"><%= index.next %></th>
+            <td><%= object.player_name %></td>
+            <td><%= message['form']['level'][object.level.to_s] %></td>
+            <td><%= object.score %></td>
+            <td><%= message['table']["_#{object.winner}"] %></td>
+            <td><%= object.date.strftime('%Y.%m.%d') %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
+<hr class="mb-4">
+
+<%= render('_button_home') %>

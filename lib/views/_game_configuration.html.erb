@@ -1,0 +1,24 @@
+<form method="post" action="<%= Web::PLAY_URL %>">
+  <div class="form-group">
+    <label for="player_name" class="lead label"><%= message['form']['label']['player_name'] %>:</label>
+    <input class="form-control" name="player_name" id='player_name' pattern="^[\w\u0400-\u04ff]{3,20}$" placeholder="<%= message['form']['placeholder']['your_name'] %>" autofocus required>
+  </div>
+
+  <div class="form-group">
+    <label for="level" class="lead label"><%= message['form']['label']['level'] %>:</label>
+    <select class="custom-select" name="level" required>
+      <option value=""><%= message['form']['level']['choose'] %></option>
+      <option value="simple"><%= message['form']['level']['simple'] %></option>
+      <option value="middle"><%= message['form']['level']['middle'] %></option>
+      <option value="hard"><%= message['form']['level']['hard'] %></option>
+    </select>
+  </div>
+
+  <hr class="mb-4">
+
+  <button type="submit" class="btn btn-primary btn-lg">
+    <%= message['form']['submit']['start_game'] %>
+  </button>
+  
+  <%= render('_button_scores') %>
+</form>

@@ -1,0 +1,59 @@
+:ru:
+  headers:
+    app_name: Codebreaker 2018 веб-версия
+    author: Владислав Троценко
+    error: Ошибка
+  meta:
+    finish: Ваши результаты
+    scores: Лучшие игроки
+  form:
+    lang:
+      eng: Английский
+      rus: Русский
+    label:
+      player_name: Имя игрока
+      level: Уровень сложности
+    placeholder:
+      your_name: Ваше имя
+    level:
+      choose: Выберите уровень сложности игры...
+      simple: Легкий
+      middle: Средний
+      hard: Сложный
+    submit:
+      start_game: Начать игру!
+      answer: Отправить
+      hint: Показать подсказку!
+      top_start: Лучшие
+      top_end: игроков
+      home: На главную
+      play_again: Играть еще!
+  body:
+    app_name: Codebreaker 2018
+    intro: Попробуйте отгадать 4-значное число, состоящее из чисел, находящихся в диапазоне от 1 до 6.
+    404_info: 404 Ошибка. Страница не найдена.
+    403_info: 403 Ошибка. Доступ запрещен.
+    congrats_start: Поздравляем
+    congrats_end: Вы выиграли игру!
+    lost_start: Вы проиграли! Не печальтесь
+    lost_end: Это всего-лишь игра ;)
+    no_scores: Здесь пока ничего нет. Ты можешь стать первым!
+  ui:
+    hello: Привет
+    level: Уровень
+    attempts: Попытки
+    hints: Подсказки
+    score: Счет
+    rating: Ваш рейтинг
+  alerts:
+    motivation: Подумай хорошенько и сделай это!
+  copyrights:
+    geminfo: Это приложение использует
+  table:
+    name: Имя
+    level: Уровень
+    score: Счет
+    summary: Результат
+    date: Дата
+    _true: Выиграл
+    _false: Проиграл
