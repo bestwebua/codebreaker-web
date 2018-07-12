@@ -24,7 +24,7 @@ Rack version of codebreaker2018 [![Gem Version](https://badge.fury.io/rb/codebre
 
 http://codebreaker.bestweb.com.ua:9292
 
-![CodebreakerWeb screenshot](https://raw.githubusercontent.com/bestwebua/homework-05-codebreaker-web/feature/base_version/public/images/screenshot.png)
+![CodebreakerWeb screenshot](https://raw.githubusercontent.com/bestwebua/homework-05-codebreaker-web/develop/public/images/screenshot.png)
 
 ## Technology summary
 
