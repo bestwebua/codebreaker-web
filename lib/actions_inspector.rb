@@ -11,12 +11,12 @@ module Codebreaker
 
     def initialize(app)
       @app = app
+      @restricted_access = [HINT_URL, SUBMIT_URL, FINISH_URL]
     end
 
     def call(env)
       @request = Rack::Request.new(env)
-      @locale = request.session.options[:locale]
-      @restricted_access = [HINT_URL, SUBMIT_URL, FINISH_URL]
+      @locale = request.session.options[:locale]      
       @player_name = request.params['player_name']
       @level = request.params['level']
 
