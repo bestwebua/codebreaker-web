@@ -1,11 +1,11 @@
 # CodebreakerWeb
-<a href="https://codeclimate.com/github/bestwebua/homework-05-codebreaker-web/maintainability"><img src="https://api.codeclimate.com/v1/badges/8323f51857468b277816/maintainability" /></a> <a href="https://codeclimate.com/github/bestwebua/homework-05-codebreaker-web/test_coverage"><img src="https://api.codeclimate.com/v1/badges/8323f51857468b277816/test_coverage" /></a> <a href="https://codeclimate.com/github/bestwebua/homework-05-codebreaker-web"><img src="https://img.shields.io/badge/monkey--patches-0-brightgreen.svg"></a>
+<a href="https://codeclimate.com/github/bestwebua/homework-05-codebreaker-web/maintainability"><img src="https://api.codeclimate.com/v1/badges/8323f51857468b277816/maintainability" /></a> <a href="https://codeclimate.com/github/bestwebua/homework-05-codebreaker-web/test_coverage"><img src="https://api.codeclimate.com/v1/badges/8323f51857468b277816/test_coverage" /></a> <a href="https://codeclimate.com/github/bestwebua/homework-05-codebreaker-web"><img src="https://img.shields.io/badge/monkey--patches-0-brightgreen.svg"></a> [![Build Status](https://travis-ci.org/bestwebua/homework-05-codebreaker-web.svg?branch=master)](https://travis-ci.org/bestwebua/homework-05-codebreaker-web)
 
 Rack version of codebreaker2018 [![Gem Version](https://badge.fury.io/rb/codebreaker2018.svg)](https://badge.fury.io/rb/codebreaker2018). Try to guess 4-digit number, that consists of numbers in a range between 1 to 6.
 
 ## Features
 
-1. Ability to change the language from anywhere in the application. English and Russian localizations.
+1. Ability to change current language from anywhere in the application. English and Russian localizations.
 2. Self template methods.
 3. No monkey-patching codebreaker2018 gem class/methods.
 4. This app uses codebreaker2018 gem modules, no double implementation.
@@ -34,7 +34,7 @@ http://codebreaker.bestweb.com.ua:9292
 * Twitter Bootstrap 4.1.1
 * HTML5/CSS/JS
 * Environment: CentOS 6.8/Puma 3.11
-* Testing: RSpec 3.7, simplecov 0.16
+* Testing: RSpec 3.7, RspecFileChef 0.1.2, rack-test 1.0, simplecov 0.16
 
 ## Contributing
 
