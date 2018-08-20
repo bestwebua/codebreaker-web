@@ -1,5 +1,5 @@
 # CodebreakerWeb
-<a href="https://codeclimate.com/github/bestwebua/homework-05-codebreaker-web/maintainability"><img src="https://api.codeclimate.com/v1/badges/8323f51857468b277816/maintainability" /></a> <a href="https://codeclimate.com/github/bestwebua/homework-05-codebreaker-web/test_coverage"><img src="https://api.codeclimate.com/v1/badges/8323f51857468b277816/test_coverage" /></a> <a href="https://codeclimate.com/github/bestwebua/homework-05-codebreaker-web"><img src="https://img.shields.io/badge/monkey--patches-0-brightgreen.svg"></a> [![Build Status](https://travis-ci.org/bestwebua/homework-05-codebreaker-web.svg?branch=master)](https://travis-ci.org/bestwebua/homework-05-codebreaker-web)
+<a href="https://codeclimate.com/github/bestwebua/homework-05-codebreaker-web/maintainability"><img src="https://api.codeclimate.com/v1/badges/8323f51857468b277816/maintainability" /></a> <a href="https://codeclimate.com/github/bestwebua/homework-05-codebreaker-web/test_coverage"><img src="https://api.codeclimate.com/v1/badges/8323f51857468b277816/test_coverage" /></a> <a href="https://codeclimate.com/github/bestwebua/homework-05-codebreaker-web"><img src="https://img.shields.io/badge/monkey--patches-0-brightgreen.svg"></a> [![Build Status](https://travis-ci.org/bestwebua/codebreaker-web.svg?branch=master)](https://travis-ci.org/bestwebua/codebreaker-web)
 
 Rack version of codebreaker2018 [![Gem Version](https://badge.fury.io/rb/codebreaker2018.svg)](https://badge.fury.io/rb/codebreaker2018). Try to guess 4-digit number, that consists of numbers in a range between 1 to 6.
 
@@ -24,7 +24,7 @@ Rack version of codebreaker2018 [![Gem Version](https://badge.fury.io/rb/codebre
 
 http://codebreaker.bestweb.com.ua:9292
 
-![CodebreakerWeb screenshot](https://raw.githubusercontent.com/bestwebua/homework-05-codebreaker-web/develop/public/images/screenshot.png)
+![CodebreakerWeb screenshot](https://raw.githubusercontent.com/bestwebua/codebreaker-web/develop/public/images/screenshot.png)
 
 ## Technology summary
 
@@ -38,7 +38,7 @@ http://codebreaker.bestweb.com.ua:9292
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/bestwebua/homework-05-codebreaker-web. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/bestwebua/codebreaker-web. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
