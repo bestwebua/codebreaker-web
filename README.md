@@ -22,7 +22,7 @@ Rack version of codebreaker2018 [![Gem Version](https://badge.fury.io/rb/codebre
 
 ## Demo
 
-http://codebreaker.bestweb.com.ua:9292
+https://codebreaker2018.herokuapp.com
 
 ![CodebreakerWeb screenshot](https://raw.githubusercontent.com/bestwebua/codebreaker-web/develop/public/images/screenshot.png)
 
